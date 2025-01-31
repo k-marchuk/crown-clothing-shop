@@ -49,9 +49,17 @@ export const CartContext = createContext({
 
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState();
-  const [cartItems, setCartItems] = useState([]);
-  const [cartCount, setCartCount] = useState(0);
-  const [cartTotal, setCartTotal] = useState(0);
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 3,
+      imageUrl: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
+      price: 35,
+      name: 'Brown Cowboy',
+      quantity: 1,
+    },
+  ]);
+  const [cartCount, setCartCount] = useState(1);
+  const [cartTotal, setCartTotal] = useState(35);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
@@ -93,6 +101,8 @@ export const CartProvider = ({ children }) => {
     cartCount,
     cartTotal,
   };
+
+  console.log({ value });
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

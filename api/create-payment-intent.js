@@ -13,8 +13,6 @@ export async function POST(event) {
       payment_method_types: ['card'],
     });
 
-    // console.log(paymentIntent);
-
     return Response.json(paymentIntent);
   } catch (error) {
     console.log({ error });
