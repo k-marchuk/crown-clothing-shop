@@ -9,7 +9,7 @@ import {
 } from './cart-dropdown.styles.jsx';
 import { CartContext } from '../../contexts/cart.context';
 
-const CartDropdown = () => {
+const CartDropdown = ({ dropdownRef }) => {
   const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const CartDropdown = () => {
   };
 
   return (
-    <CartDropdownContainer>
+    <CartDropdownContainer ref={dropdownRef}>
       <CartItems>
         {cartItems.length ? (
           cartItems.map((item) => <CartItem key={item.id} cartItem={item} />)

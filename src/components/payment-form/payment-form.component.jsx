@@ -8,10 +8,12 @@ import {
 } from './payment-form.styles';
 import { UserContext } from '../../contexts/user.context';
 import { CartContext } from '../../contexts/cart.context';
-//use currentUser and cartTotal
+import { useNavigate } from 'react-router-dom';
+
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
   const { cartTotal } = useContext(CartContext);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
@@ -39,12 +41,13 @@ const PaymentForm = () => {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: currentUser.displayName ?? 'Guest',
+          name: currentUser?.displayName ?? 'Guest',
         },
       },
     });
 
     setIsProcessingPayment(false);
+    navigate('/shop');
 
     if (paymentResult.error) {
       alert(paymentResult.error);

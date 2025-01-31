@@ -11,9 +11,6 @@ export async function POST(event) {
       amount,
       currency: 'usd',
       payment_method_types: ['card'],
-      // payment_method_data: {
-      //   type: 'card',
-      // },
     });
 
     return Response.json(paymentIntent);
